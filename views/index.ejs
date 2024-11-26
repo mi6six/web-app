@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/public/style.css">
+    <title>Item List</title>
+</head>
+<body>
+    <h1>Item List</h1>
+    <form action="/items" method="POST">
+        <input type="text" name="name" placeholder="Item Name" required>
+        <textarea name="description" placeholder="Description"></textarea>
+        <button type="submit">Add Item</button>
+    </form>
+    <ul>
+        <% items.forEach(item => { %>
+            <li>
+                <%= item.name %> - <%= item.description %>
+                <form action="/items/<%= item.id %>?_method=DELETE" method="POST">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        <% }) %>
+    </ul>
+</body>
+</html>
